@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="UTF-8">
+    <title>crud_Carlos</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  </head>
+  <body>
+   <h1>Registro maestros</h1>
+
+
+<div class="container mt-5">
+
+    <div class="col-md-7">
+      <table class="table", id="tbl">
+        <thead id="titulo">
+          <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+            <td>Detalles</td>
+            <td>Cambios</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].nombre %></td>
+                <td><%= data[i].detalles %></td>
+                <td>
+                  <div class="row">
+                    <a href="/update/<%= data[i].id %>" class="btn btn-outline-success">Editar</a>
+                    <a href="/delete/<%= data[i].id %>" class="btn btn-outline-danger">Eliminar</a>
+                  </div>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+
+<div>
+        <form action="/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="nombre" placeholder="Nombre" >
+          </div>
+          <div class="form-group">
+            <input type="text" name="detalles" placeholder="Detalles">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+           Guardar
+          </button>
+        </form>
+</div>
+  
+<!-------------------------------FACEBOOK---------------------------------------------------->
+<div class="container mt-5">
+<h1>Api de facebook</h1>
+
+<!-- Facebook SDK  -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!---Boton compartir -->
+<div class="fb-share-button" 
+data-href="https://github.com/CarloSeknaal" 
+data-layout="box_count"
+ data-size="large">
+ <a target="_blank"
+  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+  class="fb-xfbml-parse-ignore">Compartir</a></div>
+
+</div>
+<!------------------------------- FIN FACEBOOK---------------------------------------------------->
+
+    </div>
+  </div>
+</div>
+<% include partials/_footer %>
